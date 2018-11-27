@@ -72,7 +72,7 @@ class QuestionIndexViewTests(TestCase):
             response.context['latest_question_list'],
             ['<Question: Past question 2.>', '<Question: Past question 1.>']
         )
-
+        
 class QuestionDetailViewTests(TestCase):
     def test_future_question(self):
         """
@@ -94,7 +94,6 @@ class QuestionDetailViewTests(TestCase):
         response = self.client.get(url)
         self.assertContains(response, past_question.question_text)
 
-
 class QuestionModelTests(TestCase):
 
     def test_was_published_recently_with_future_question(self):
@@ -111,4 +110,3 @@ class QuestionModelTests(TestCase):
      	time = timezone.now() - datetime.timedelta(days=1, seconds=1)
      	recent_question = Question(pub_date = time)
      	self.assertIs(recent_question.was_published_recently(), False)
-
